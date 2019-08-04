@@ -6,44 +6,32 @@ namespace TestNinja.UnitTests.Me
     [TestFixture]
     class MathTests
     {
+        private Math _math;
+        // TearDown
+        // SetUp
+        [SetUp]
+        public void Setup()
+        {
+            _math = new Math();
+        }
+
         [Test]
         public void Add_WhenCalled_ReturnTheSumOfArguments()
         {
-            var math = new Math();
-
-            var result = math.Add(299, 100);
+            var result = _math.Add(299, 100);
 
             Assert.That(result, Is.EqualTo(399));
         }
 
         [Test]
-        public void Max_WhenFirstArgumentIsGreater_ReturnFirstArgument()
+        [TestCase(28, 39, 39)]
+        [TestCase(44, 33, 44)]
+        [TestCase(55, 55, 55)]
+        public void Max_WhenCalled_ReturnGreaterArgument(int a, int b, int expectedResult)
         {
-            var math = new Math();
+            var result = _math.Max(a, b);
 
-            var result = math.Max(188, 97);
-
-            Assert.That(result, Is.EqualTo(188));
-        }
-
-        [Test]
-        public void Max_WhenSecondArgumentIsGreater_ReturnSecondArgument()
-        {
-            var math = new Math();
-
-            var result = math.Max(28, 37);
-
-            Assert.That(result, Is.EqualTo(37));
-        }
-
-        [Test]
-        public void Max_WhenArgumentsAreEqual_ReturnOneArgument()
-        {
-            var math = new Math();
-
-            var result = math.Max(28, 28);
-
-            Assert.That(result, Is.EqualTo(28));
+            Assert.That(result, Is.EqualTo(expectedResult));
         }
     }
 }
