@@ -33,5 +33,29 @@ namespace TestNinja.UnitTests.Me
 
             Assert.That(result, Is.EqualTo(expectedResult));
         }
+
+        [Test]
+        public void GetOddNumbers_LimitIsGreaterThanZero_ReturnOddNumbers()
+        {
+            var result = _math.GetOddNumbers(5);
+
+            Assert.That(result, Is.EquivalentTo(new[] {3, 1, 5 }));
+        }
+
+        [Test]
+        public void GetOddNumbers_LimitIsZero_ReturnEmpty()
+        {
+            var result = _math.GetOddNumbers(0);
+
+            Assert.That(result, Is.Empty);
+        }
+
+        [Test]
+        public void GetOddNumbers_LimitIsLessThanZero_ReturnEmpty()
+        {
+            var result = _math.GetOddNumbers(-2);
+
+            Assert.That(result, Is.Empty);
+        }
     }
 }
